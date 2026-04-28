@@ -70,12 +70,10 @@ if (-not $pythonCmd) {
 Write-Status 'Initialising edge router …'
 
 $procArgs = @{
-    FilePath               = $pythonCmd
-    ArgumentList           = "-u `"$EdgeRouterPath`""
-    WindowStyle            = 'Hidden'
-    RedirectStandardOutput = 'NUL'
-    RedirectStandardError  = 'NUL'
-    PassThru               = $true
+    FilePath     = $pythonCmd
+    ArgumentList = "-u `"$EdgeRouterPath`""
+    WindowStyle  = 'Hidden'
+    PassThru     = $true
 }
 
 try {

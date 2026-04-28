@@ -22,12 +22,16 @@ def run():
         srv.bind((HOST, PORT))
         srv.listen(8)
         log.info("Listening for connections …")
+        srv.settimeout(1.0)
         while True:
             try:
                 conn, addr = srv.accept()
                 with conn:
+                    conn.settimeout(5.0)
                     log.info("Connection from %s", addr)
                     conn.sendall(b"SOVEREIGN_NODE_29_OK\r\n")
+            except socket.timeout:
+                continue
             except Exception as exc:
                 log.error("Router error: %s", exc)
                 time.sleep(1)

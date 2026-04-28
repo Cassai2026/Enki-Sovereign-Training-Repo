@@ -193,7 +193,10 @@
     setInterval(() => {
       const msg = events[Math.floor(Math.random() * events.length)];
       const ts  = new Date().toLocaleTimeString();
-      logEl.textContent += `\n[${ts}] ${msg}`;
+      const lines = logEl.textContent.split('\n');
+      if (lines.length > 50) lines.splice(0, lines.length - 50);
+      lines.push(`[${ts}] ${msg}`);
+      logEl.textContent = lines.join('\n');
       logEl.parentElement.scrollTop = logEl.parentElement.scrollHeight;
     }, 4000);
   </script>
